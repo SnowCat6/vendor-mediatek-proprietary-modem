@@ -8,7 +8,7 @@
 #  any reproduction,modification, use or disclosure of MediaTek Software, and
 #  information contained herein, in whole or in part, shall be strictly prohibited.
 #   
-#  MediaTek Inc.(C)2011.All rights reserved.
+#  MediaTek Inc.(C)2015.All rights reserved.
 #
 #  BY OPENING THIS FILE, RECEIVER HEREBY UNEQUIVOCALLY ACKNOWLEDGES AND
 #  AGREES THAT THE SOFTWARE/FIRMWARE AND ITS DOCUMENTATIONS ("MEDIATEK 
@@ -33,7 +33,7 @@
 #
 # *************************************************************************
 
-# Generated at 2015-05-05 15:45:01
+# Generated at 2016-10-04 09:46:10
 
 # ------------------------------ Modem specification
 MODEM_SPEC = MTK_MODEM_LWG
@@ -329,14 +329,14 @@ BAND_SUPPORT = QUAD
   #   TRIPLE: Support 900/1800/1900
   #   TRIPLE850: Support 850/1800/1900
   # Switch-ability:
+  #   TRIPLE -> EGSM900
   #   DUAL850 -> GSM850
-  #   DUAL850 -> PCS1900
-  #   DUAL900 -> DCS1800
-  #   DUAL900 -> EGSM900
-  #   QUAD -> [Any]
   #   TRIPLE -> DCS1800
   #   TRIPLE -> DUAL900
-  #   TRIPLE -> EGSM900
+  #   DUAL900 -> EGSM900
+  #   DUAL900 -> DCS1800
+  #   QUAD -> [Any]
+  #   DUAL850 -> PCS1900
   #   TRIPLE -> PCS1900
 
 RF_MODULE = MT6735_2G_MT6169_CUSTOM
@@ -368,7 +368,7 @@ UMTS_RF_MODULE = MT6735_UMTS_FDD_MT6169_CUSTOM
   #   Non-switchable
 
 # ------------------------------ Verno information
-VERNO = MOLY.LR9.W1444.MD.LWTG.MP.V16.P26
+VERNO = MOLY.LR9.W1444.MD.LWTG.MP.V110.5.P1
 BUILD = BUILD_NO
 BRANCH = LR9.W1444.MD.LWTG.MP
 # ------------------------------ System configurations
@@ -406,7 +406,7 @@ CUSTOM_OPTION +=
 #CUSTOM_OPTION += __EPSK_TX_SW_SWITCH_OFF
 
 # internal configuration
-PROJECT_MAKEFILE_EXT = HCT6753_65C_L1(LWG_DSDS)_EXT
+PROJECT_MAKEFILE_EXT = HCT6737M_65_N(LWG_DSDS)_EXT
 #
 #  Copyright Statement:
 #  ---------------------------
@@ -417,7 +417,7 @@ PROJECT_MAKEFILE_EXT = HCT6753_65C_L1(LWG_DSDS)_EXT
 #  any reproduction,modification, use or disclosure of MediaTek Software, and
 #  information contained herein, in whole or in part, shall be strictly prohibited.
 #   
-#  MediaTek Inc.(C)2011.All rights reserved.
+#  MediaTek Inc.(C)2015.All rights reserved.
 #
 #  BY OPENING THIS FILE, RECEIVER HEREBY UNEQUIVOCALLY ACKNOWLEDGES AND
 #  AGREES THAT THE SOFTWARE/FIRMWARE AND ITS DOCUMENTATIONS ("MEDIATEK 
@@ -442,7 +442,7 @@ PROJECT_MAKEFILE_EXT = HCT6753_65C_L1(LWG_DSDS)_EXT
 #
 # *************************************************************************
 
-# Generated at 2015-05-05 15:45:01
+# Generated at 2016-10-04 09:46:10
 2G_TX_VOLTAGE_COMPENSATION_SUPPORT = TRUE
   # Description:
   #   This feature option is to turn on/off the voltage compensation on 2G TX power
@@ -597,15 +597,24 @@ DUAL_MODEM_SUPPORT = FALSE
   # Switch-ability:
   #   N/A
 
-DUAL_SIM_HOT_SWAP_CO_DECK = TRUE
+DUAL_SIM_HOT_SWAP_CO_DECK = FALSE
   # Description:
   #   support SIM hot swap in the SAME deck
   # Option Values:
   #   TRUE: Support dual SIM card hot plug in the same deck
   #   FALSE: support dual SIM card hot plug in different deck
   # Switch-ability:
-  #   FALSE -> TRUE
   #   TRUE -> FALSE
+  #   FALSE -> TRUE
+
+ECALL_SUPPORT = FALSE
+  # Description:
+  #   Enable/disable eCall support
+  # Option Values:
+  #   FALSE: FALSE: eCall disable
+  #   TRUE: TRUE : eCall enable
+  # Switch-ability:
+  #   Non-switchable
 
 ECC_RETRY_ENHANCEMENT = TRUE
   # Description:
@@ -752,8 +761,8 @@ KAL_TRACE_OUTPUT = FULL
   #   CUST_PARTIAL: Enable partial traces
   #   FULL: Enable all trace
   # Switch-ability:
-  #   NONE -> CUST_PARTIAL
   #   NONE -> FULL
+  #   NONE -> CUST_PARTIAL
 
 L1_EPSK_TX = TRUE
   # Description:
@@ -770,6 +779,15 @@ L1_GPS_CO_CLOCK_SUPPORT = TRUE
   # Option Values:
   #   TRUE: Fixed AFC is supported.
   #   FALSE: Fixed AFC is unsupported.
+  # Switch-ability:
+  #   Non-switchable
+
+L1_GPS_FREQ_AIDING_SUPPORT = FALSE
+  # Description:
+  #   Depend on this option to differentiate if MD provides Freq. Aiding support to GPS
+  # Option Values:
+  #   FALSE: Freq Aiding to GPS by MD Disabled
+  #   TRUE: Freq Aiding to GPS by MD Enabled
   # Switch-ability:
   #   Non-switchable
 
@@ -867,6 +885,15 @@ NVRAM_PSEUDO_MERGE = OFF
   # Switch-ability:
   #   [Any] -> [Any]
 
+OPTIMIZED_GEN90_2G_APC_CONTROL_FLOW_SUPPORT = FALSE
+  # Description:
+  #   Optimized Generation 90 APC control flow
+  # Option Values:
+  #   FALSE: Turn off optimization flow
+  #   TUE: Turn on optimization flow
+  # Switch-ability:
+  #   Non-switchable
+
 PARTIAL_TRACE_LIB = NONE
   # Description:
   #   When module was defined in PARTIAL_TRACE_LIB, the compile option, TRACE_MODULE_OFF, will be un-defined, and it will be buit with TRACE information.
@@ -961,6 +988,15 @@ RF_DRDI_GPIO_6PIN_SUPPORT = FALSE
   # Option Values:
   #   TRUE: Enable RF DRDI GPIO 6pin support
   #   FALSE: Disable RF DRDI GPIO 6pin support
+  # Switch-ability:
+  #   Non-switchable
+
+RF_DRDI_SPECIAL_MEMORY_SUPPORT = FALSE
+  # Description:
+  #   this feature option is for extend DRDI to support HTC request
+  # Option Values:
+  #   FALSE: Disable this feature
+  #   TRUE: Enable this feature
   # Switch-ability:
   #   Non-switchable
 
@@ -1367,6 +1403,15 @@ DCS_TX_NOTCH_SWITCH_SUPPORT = FALSE
   # Option Values:
   #   TRUE: Support DCS TX NOTCH SWITCH
   #   FALSE: Not support DCS TX NOTCH SWITCH
+  # Switch-ability:
+  #   Non-switchable
+
+DHL_MONITOR_MODE_SUPPORT = FALSE
+  # Description:
+  #   Collect customer subscribe info to monitor channel
+  # Option Values:
+  #   TRUE: Enable this feature.
+  #   FALSE: Disable this feature.
   # Switch-ability:
   #   Non-switchable
 
@@ -1834,7 +1879,7 @@ SERIAL_FLASH_SUPPORT = FALSE
   # Switch-ability:
   #   Non-switchable
 
-SET_IMEI_BY_PLMN = TRUE
+SET_IMEI_BY_PLMN = FALSE
   # Description:
   #   According to CMCC demand, dual sim card UE should apply two same IMEI when camp on CMCC net. 
   #   and use two differ IMEI when romaing to other country NW.
@@ -2045,7 +2090,7 @@ USIM_SUPPORT = TRUE
 
 
 #[MTK internal used]# ------------------------------ 
-ORIGINAL_VERNO = MOLY.LR9.W1444.MD.LWTG.MP.V16.P20
+ORIGINAL_VERNO = MOLY.LR9.W1444.MD.LWTG.MP.V110.5.P1
 3G_DATA_PLANE_MEMORY_SHRINK = FALSE
   # Description:
   #   The option is to enable 3G data plane memory shrink by data buffer number reduction
@@ -2098,6 +2143,15 @@ AOC_SUPPORT = TRUE
   # Option Values:
   #   TRUE: Turn on AOC
   #   FALSE: Turn off AOC
+  # Switch-ability:
+  #   Non-switchable
+
+AUTOMOTIVE_TELEMATICS = FALSE
+  # Description:
+  #   ECNR for Automobile
+  # Option Values:
+  #   TRUE: Support ECNR for Automobile
+  #   FALSE: Not Support ECNR for Automobile
   # Switch-ability:
   #   Non-switchable
 
@@ -2219,15 +2273,6 @@ DEMO_PROJECT = FALSE
   # Option Values:
   #   TRUE: Enable this feature
   #   FALSE: Disable this feature
-  # Switch-ability:
-  #   Non-switchable
-
-DHL_DNT_LOGGING = FALSE
-  # Description:
-  #   Enable SIB logging (High speed logging interface) for DHL based load
-  # Option Values:
-  #   TRUE: Enable DNT logging
-  #   FALSE: Disable DNT logging
   # Switch-ability:
   #   Non-switchable
 
@@ -2702,6 +2747,15 @@ MD_OFFLOAD_COPRO = NONE
   # Switch-ability:
   #   Non-switchable
 
+MTK_AUDIO_HIERARCHICAL_PARAM_SUPPORT = FALSE
+  # Description:
+  #   NEW SPE architecture
+  # Option Values:
+  #   TRUE: Enable New SPE architecture 
+  #   FALSE: Disable NEW SPE architecture
+  # Switch-ability:
+  #   Non-switchable
+
 MTK_SLEEP_ENABLE = TRUE
   # Description:
   #   Sleep mode enable or not
@@ -2765,7 +2819,7 @@ ORIGINAL_FLAVOR = LWG_DSDS
   # Switch-ability:
   #   Non-switchable
 
-ORIGINAL_PROJECT_NAME = HCT6753_65C_L1
+ORIGINAL_PROJECT_NAME = HCT6737M_65_N
   # Description:
   #   Project original name setting (for customer project reference only)
   # Option Values:
@@ -3111,6 +3165,21 @@ VOLTE_SUPPORT = TRUE
   # Switch-ability:
   #   Non-switchable
 
+WFC_SUPPORT = TRUE
+  # Description:
+  #   Description: 
+  #   This is for WFC project. WFC is part of IMS. So WFC_SUPPORT can only effective when IMS_SUPPORT is set to TRUE also.
+  #   Option Values: 
+  #   NONE: Not support for IMS-WFC feature 
+  #   TRUE: support for IMS-WFC feature 
+  #   Switch-ability: 
+  #   Non-switchable
+  # Option Values:
+  #   TRUE: Enable WFC capability
+  #   FALSE: Disable WFC capability
+  # Switch-ability:
+  #   Non-switchable
+
 X_BOOTING = NONE
   # Description:
   #   Define the device for X-booting
@@ -3143,7 +3212,9 @@ ZIMAGE_SUPPORT = FALSE
   #   Non-switchable
 
 
-HW_VER = HCT6753_65C_L1_HW
+HW_VER = HCT6737M_65_N_HW
+
+LOG_BUF_IN_SHM_SUPPORT = FALSE
 
 C2K_MODE_SUPPORT = C2K_MODE_CT
 
@@ -3154,6 +3225,8 @@ MTK_INTERNAL_NVRAM_VISIBLE = FALSE
 LTE_OTDOA_SUPPORT = TRUE
 
 3SET_F8F9_ENABLE = TRUE
+
+DHL_DNT_LOGGING = FALSE
 
 EDGE_CLASS_10 = FALSE
 
@@ -3244,7 +3317,11 @@ CUSTOM_OPTION += __VSIM__
 CUSTOM_OPTION += __L1DMA_DFEDMA_WORKAROUND__
 CUSTOM_OPTION += __AT_EPBW_SUPPORT__
 CUSTOM_OPTION += __CC_IRQ_EXIST__
-REMOVE_CUSTOM_OPTION += __SIM_RESET_BY_SIM__
+CUSTOM_OPTION += __FAST_ROAMING_SEARCH__
+CUSTOM_OPTION += __SEARCH_NOT_PREFERRED_AVAILABLE_PLMN__
+CUSTOM_OPTION += __MCC_ASSIST_FULLBAND_RAT_SELECTION__
+CUSTOM_OPTION += __FAST_HPPLMN_SEARCH__
+CUSTOM_OPTION += __BCSFB__
 # ************************************************************************* 
 # Component trace definition header files for custom release only 
 # ************************************************************************* 
@@ -3262,5 +3339,3 @@ ifeq ($(strip $(CUSTOM_RELEASE)),TRUE)
     -include make/rel/sub_ps/$(strip $(RELEASE_PACKAGE_SUB_PS)).mak
   endif
 endif
-#add by hct drv
-include make/custom_config/hct_modem_cust.mak
