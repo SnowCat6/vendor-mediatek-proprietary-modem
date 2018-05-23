@@ -1,0 +1,5 @@
+#=============allow wifi offload deamon  ==============
+net.wo.   u:object_r:mtk_wod_prop:s0
+persist.net.wo.   u:object_r:persist_wod_prop:s0
+
+
