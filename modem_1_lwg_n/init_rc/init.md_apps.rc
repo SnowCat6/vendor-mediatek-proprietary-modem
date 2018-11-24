@@ -1,2 +1,0 @@
-on boot
-    setprop ro.md_apps.support 1
